@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Farmácia Multifarma Popular</title>
+<style>
+  body {
+    margin: 0;
+    background: #fff;
+    font-family: Arial, sans-serif;
+    color: #0074D9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    user-select: none;
+    color: #0074D9;
+    z-index: 20;
+  }
+  #menuDropdown {
+    position: fixed;
+    top: 55px;
+    right: 25px;
+    background: white;
+    border: 1px solid #0074D9;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    display: none;
+    min-width: 140px;
+    z-index: 30;
+  }
+  #menuDropdown div {
+    padding: 10px 15px;
+    color: #0074D9;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e2e2;
+    cursor: pointer;
+  }
+  #menuDropdown div:last-child {
+    border-bottom: none;
+  }
+  #menuDropdown div:hover {
+    background: #0074D9;
+    color: white;
+  }
+  main {
+    flex: 1;
+    padding: 90px 20px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  section {
+    display: none;
+  }
+  section.active {
+    display: block;
+  }
+
+  /* Página Inicial */
+  #inicio h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #0074D9;
+  }
+  #inicio #historia {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* Promoções */
+  #promocoes h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #0074D9;
+    font-weight: 900;
+    font-size: 2.8rem;
+  }
+  .produto {
+    background: #fff;
+    border: 2.5px solid #0074D9;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    padding: 20px 15px;
+    box-shadow: 0 4px 10px rgba(0, 116, 217, 0.15);
+    text-align: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .produto img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 15px;
+  }
+  .produto h2 {
+    font-weight: 900;
+    font-size: 1.9rem;
+    margin-bottom: 10px;
+    color: #004a8f;
+  }
+  .linha-azul {
+    width: 80%;
+    height: 6px;
+    background-color: #0074D9;
+    margin: 10px auto 25px auto;
+    border-radius: 4px;
+  }
+  .descricao {
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  /* Ofertas */
+  #ofertas header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    border-bottom: 2px solid #0074D9;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+  }
+  #ofertas form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  #ofertas input[type="email"] {
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    border: 2px solid #0074D9;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  #ofertas input[type="email"]:focus {
+    border-color: #004a8f;
+  }
+  #ofertas button {
+    padding: 12px;
+    background-color: #0074D9;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+  #ofertas button:hover {
+    background-color: #004a8f;
+  }
+  #mensagem {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Rodapé */
+  footer {
+    padding: 15px 10px;
+    background: #f1f1f1;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #0074D9;
+    user-select: none;
+  }
+  footer a {
+    color: #0074D9;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<header id="menuBtn">Menu ▼</header>
+<div id="menuDropdown">
+  <div data-target="inicio">Início</div>
+  <div data-target="promocoes">Promoções</div>
+  <div data-target="ofertas">Ofertas</div>
+</div>
+
+<main>
+  <section id="inicio" class="active">
+    <h1>Farmácia Multifarma Popular</h1>
+    <div id="historia">
+      <p>Há 5 anos no mercado, a Farmácia Multifarma Popular é referência em saúde e cuidado com você e sua família. Nossa missão é oferecer medicamentos de qualidade, atendimento humanizado e preços acessíveis para toda a comunidade. Venha nos visitar e faça parte dessa história de confiança e bem-estar.</p>
+    </div>
+  </section>
+
+  <section id="promocoes">
+    <h1>Promoções</h1>
+
+    <div class="produto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Paracetamol_500mg_tablets_01.jpg/120px-Paracetamol_500mg_tablets_01.jpg" alt="Paracetamol" />
+      <h2>Paracetamol</h2>
+      <div class="linha-azul"></div>
+      <p class="descricao">Compre 2 caixas por apenas R$7,00 e leve 1000 comprimidos!</p>
+    </div>
+
+    <div class="produto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ibuprofen_400mg_tablets_01.jpg/120px-Ibuprofen_400mg_tablets_01.jpg" alt="Ibuprofeno" />
+      <h2>Ibuprofeno</h2>
+      <div class="linha-azul"></div>
+      <p class="descricao">Promoção especial: Leve 3, pague 2!</p>
+    </div>
+
+    <div class="produto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Aspirin_325mg_tablets_01.jpg/120px-Aspirin_325mg_tablets_01.jpg" alt="Aspirina" />
+      <h2>Aspirina</h2>
+      <div class="linha-azul"></div>
+      <p class="descricao">Desconto de 20% em todas as unidades.</p>
+    </div>
+  </section>
+
+  <section id="ofertas">
+    <header>Receba nossas ofertas</header>
+    <form id="emailForm">
+      <input type="email" id="email" placeholder="Digite seu e-mail" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+    <div id="mensagem"></div>
+  </section>
+</main>
+
+<footer>
+  WhatsApp: <a href="https://wa.me/5582988136256" target="_blank" rel="noopener noreferrer">82 9 8813-6256</a> | By João Victor
+</footer
